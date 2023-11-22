@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ HttpClientModule, CommonModule, RouterOutlet ],
+  imports: [ HttpClientModule, CommonModule, RouterOutlet, NgbModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
