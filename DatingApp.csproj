@@ -17,6 +17,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.0.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,10 +26,6 @@
 
   <ItemGroup>
     <None Include="D:\Solutions\DatingApp\DatingApp\.editorconfig" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Services\TokenService\" />
   </ItemGroup>
 
 </Project>
