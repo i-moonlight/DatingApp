@@ -13,9 +13,17 @@
             <a class="nav-link disabled" aria-disabled="true">Messages</a>
           </li>
         </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="text" placeholder="Username">
-          <input class="form-control me-2" type="text" placeholder="Password">
+        <form #loginForm="ngForm" class="d-flex" (ngSubmit)="login()" autocomplete="off">
+          <input name ="username"
+                 [(ngModel)]="model.username"
+                 class="form-control me-2" 
+                 type="text" 
+                 placeholder="Username">
+          <input name="password"
+                 [(ngModel)]="model.password"
+                 class="form-control me-2"
+                 type="text" 
+                 placeholder="Password">
           <button class="btn btn-outline-success" type="submit">Login</button>
         </form>
     </div>
