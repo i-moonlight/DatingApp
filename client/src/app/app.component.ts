@@ -2,15 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { TooltipModule } from 'ngx-bootstrap/tooltip';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModalModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NavComponent } from "./nav/nav.component";
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [ HttpClientModule, CommonModule, RouterOutlet, NgbModule],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+    selector: 'app-root',
+    standalone: true,
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.css',
+    imports: [HttpClientModule, CommonModule, RouterOutlet, NgbModule, NavComponent]
 })
 export class AppComponent implements OnInit{
   title = 'Dating App';
