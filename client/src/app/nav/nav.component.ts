@@ -15,36 +15,21 @@ import { Observable, of } from 'rxjs';
 })
 export class NavComponent implements OnInit{
   model: any={}
-  //currentUser$: Observable<User | null> = of(null);
-  //loggenIn = false;
-  ngOnInit(): void {
-    //this.currentUser$ = this.accoutnService.currentUser$;
-    //this.getCurrentUser();
-   }
+  
+  ngOnInit(): void {}
 
   constructor(public accoutnService:AccountService){ }
-
-  // getCurrentUser(){
-   
-  //   this.accoutnService.currentUser$.subscribe({
-  //     next: user => this.loggenIn = !!user,
-  //     error: error => console.log(error)
-  //   })
-  // }
 
   login(){
     this.accoutnService.login(this.model).subscribe({
       next: response => {
         console.log(response);
-        //this.loggenIn = true;
       },
       error: error => console.log(error)
     });
   }
   logout(){
     this.accoutnService.logout();
-    //this.loggenIn =  false;
-    
   }
 
 }
