@@ -2,10 +2,17 @@
     <h2 class="text-center text-primary">Sign Up</h2>
     <hr>
     <div class="mb-3">
-        <input type="text" class="form-control" name="username" [(ngModel)]="model.username" placeholder="Username" >
+        <input type="text" class="form-control" name="username" [(ngModel)]="model.username" placeholder="Username">
+    </div>
+    <div class="md-3">
+        <label>Who is your favourite users?</label>
+        <select class="form-select">
+            <option *ngFor="let user of usersFromHomeComponent" [value]="user.userName">
+            {{user.userName}}
+            </option>
+        </select>
     </div>
     <div class="mb-3">
-
         <input type="password" class="form-control" name="password" [(ngModel)]="model.password" placeholder="Password">
     </div>
     <div class="text-center">
