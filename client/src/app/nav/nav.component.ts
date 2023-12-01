@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AccountService } from '../services/account.service';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
-import { User } from '../model/User';
-import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-nav',
