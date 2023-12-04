@@ -7,6 +7,7 @@ import { NavComponent } from "./nav/nav.component";
 import { AccountService } from './services/account.service';
 import { User } from './model/User';
 import { HomeComponent } from "./home/home.component";
+import { ToastrModule } from 'ngx-toastr';
 
 @Component({
     selector: 'app-root',
