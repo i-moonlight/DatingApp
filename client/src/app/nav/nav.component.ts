@@ -4,30 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { AccountService } from '../services/account.service';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { Router, RouterLink } from '@angular/router';
-import { IndividualConfig, ToastrModule, ToastrService } from 'ngx-toastr';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { HttpClientModule } from '@angular/common/http';
 
-// const toastrService = {
-//   success: (
-//     message?: string,
-//     title?: string,
-//     override?: Partial<IndividualConfig>
-//   ) => {},
-//   error: (
-//     message?: string,
-//     title?: string,
-//     override?: Partial<IndividualConfig>
-//   ) => {},
-// };
-class ToasterStub {
-  showSuccess(message: string, title: string): void {}
-  showError(message: string, title: string): void {}
-  showInfo(message: string, title: string): void {}
-  showWarning(message: string, title: string): void {}
- }
 @Component({
   selector: 'app-nav',
   standalone: true,
-  imports: [CommonModule, FormsModule, NgbDropdownModule, RouterLink, ToastrModule],
+  imports: [CommonModule, FormsModule, NgbDropdownModule, RouterLink,ToastrModule],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css'
 })
@@ -43,7 +26,7 @@ export class NavComponent implements OnInit{
   login(){
     this.accoutnService.login(this.model).subscribe({
       next: _ => this.router.navigateByUrl('/members'),
-      error: error => this.toastr.error(error.error, '',{positionClass: 'toast-bottom-right'})
+      error: error => this.toastr.error(error.error)
     });
   }
   logout(){

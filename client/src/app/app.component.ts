@@ -14,8 +14,7 @@ import { ToastrModule } from 'ngx-toastr';
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
-    providers: [AccountService],
-    imports: [HttpClientModule, CommonModule, RouterOutlet, NgbModule, NavComponent, HomeComponent]
+    imports: [CommonModule, RouterOutlet, NgbModule, NavComponent, HomeComponent, ToastrModule]
 })
 export class AppComponent implements OnInit {
   title = 'Dating App';
