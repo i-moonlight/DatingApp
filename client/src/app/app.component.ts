@@ -8,13 +8,16 @@ import { AccountService } from './services/account.service';
 import { User } from './model/User';
 import { HomeComponent } from "./home/home.component";
 import { ToastrModule } from 'ngx-toastr';
+import { SharedModule } from './_modules/shared.module';
 
 @Component({
     selector: 'app-root',
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
-    imports: [CommonModule, RouterOutlet, NgbModule, NavComponent, HomeComponent, ToastrModule]
+    imports: [
+      SharedModule
+    ]
 })
 export class AppComponent implements OnInit {
   title = 'Dating App';
