@@ -443,3 +443,5 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+datingapp.db-shm
+datingapp.db-wal

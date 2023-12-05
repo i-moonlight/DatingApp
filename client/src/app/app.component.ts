@@ -1,30 +1,43 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { TooltipModule } from 'ngx-bootstrap/tooltip';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NavComponent } from "./nav/nav.component";
+import { AccountService } from './services/account.service';
+import { User } from './model/User';
+import { HomeComponent } from "./home/home.component";
+import { ToastrModule } from 'ngx-toastr';
+import { SharedModule } from './_modules/shared.module';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [ HttpClientModule, CommonModule, RouterOutlet, NgbModule],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+    selector: 'app-root',
+    standalone: true,
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.css',
+    imports: [
+      SharedModule
+    ]
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title = 'Dating App';
-  users:any;
+  users: any;
 
-  constructor(private client:HttpClient ){
+  constructor(private accountService: AccountService) {
 
   }
   ngOnInit(): void {
-    this.client.get("https://localhost:5001/api/users").subscribe({
-      next: response => this.users = response,
-      error: error => console.log(error),
-      complete: () => console.log('Request has compleated')
-    });
+    this.setCurrentUser();
+  }
+
+
+  setCurrentUser(){
+    const userString = localStorage.getItem('user');
+    if(!userString){
+      return;
+    }
+    const user: User = JSON.parse(userString);
+    this.accountService.setCurrentUser(user);
   }
 
 }
