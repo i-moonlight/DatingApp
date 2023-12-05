@@ -16,8 +16,8 @@
             </ng-container>
         </ul>
 
-        <div ngbDropdown class="dropdown" *ngIf="accoutnService.currentUser$ | async">
-            <a ngbDropdownToggle class="dropdown-toggle text-light text-decoration-none">Welcome user</a>
+        <div ngbDropdown class="dropdown" *ngIf="(accoutnService.currentUser$ | async) as user">
+            <a ngbDropdownToggle class="dropdown-toggle text-light text-decoration-none">Welcome {{user.username | titlecase}}</a>
             <div ngbDropdownMenu class="dropdown-menu">
                 <a ngbDropdownItem class="drowndown-item">Edit Profile</a>
                 <a ngbDropdownItem class="drowndown-item" (click)="logout()">Logout</a>
@@ -29,7 +29,7 @@
                 placeholder="Username">
             <input name="password" [(ngModel)]="model.password" class="form-control me-2" type="password"
                 placeholder="Password">
-            <button class="btn btn-outline-success" type="submit">Login</button>
+            <button class="btn btn-success" type="submit">Login</button>
         </form>
     </div>
 </nav>
