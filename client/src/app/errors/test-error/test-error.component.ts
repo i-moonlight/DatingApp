@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './test-error.component.html',
-  styleUrl: './test-error.component.css'
+  styleUrl: './test-error.component.css',
 })
 export class TestErrorComponent {
   baseUrl = 'https://localhost:5001/api/';

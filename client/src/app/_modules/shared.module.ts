@@ -5,6 +5,8 @@ import { HomeComponent } from '../home/home.component';
 import { NavComponent } from '../nav/nav.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterOutlet } from '@angular/router';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ErrorInterceptor } from '../_interceptors/error.interceptor';
 
 
 
@@ -25,6 +27,6 @@ import { RouterOutlet } from '@angular/router';
       NavComponent, 
       HomeComponent, 
       ToastrModule
-  ]
+  ],
 })
 export class SharedModule { }
