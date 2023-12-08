@@ -9,35 +9,13 @@ export const authGuard: CanActivateFn = (route, state) => {
   const accountService = inject(AccountService);
   const toastr = inject(ToastrService);
 
-console.log(accountService.currentUser$);
-
   return accountService.currentUser$.pipe(
     map(user => {
-      console.log(user);
-      
-      if(user) {
+      if (user) {
         return true;
       }
-      else{
-        toastr.error("you shall not pass!");
-        return false;
-      }
+      toastr.error("you shall not pass!");
+      return false;
     })
   );
 };
-// @Injectable({
-//   providedIn: "root"
-// })
-// export class AuthGuard implements CanActivate {
-//   constructor(private accountService:AccountService, 
-//               private toastr:ToastrService){}
-//   canActivate(): Observable<boolean> {
-//     return this.accountService.currentUser$.pipe(
-//       map(user => {
-//         if (user) return true;
-//         this.toastr.error('You shall not pass!');
-//         return false;
-//       })
-//     )
-//   }  
-// }
