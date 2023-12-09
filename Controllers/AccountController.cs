@@ -4,13 +4,12 @@ using DatingApp.Entities;
 using DatingApp.Services.TokenService;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Win32;
 using System.Security.Cryptography;
 using System.Text;
 
 namespace DatingApp.Controllers
 {
-    public class AccountController:BaseApiController
+    public class AccountController : BaseApiController
     {
         private readonly DataContext _dataContext;
         private readonly ITokenService _tokenService;
@@ -23,9 +22,9 @@ namespace DatingApp.Controllers
         }
 
         [HttpPost("register")] //POST: api/account/register
-        public async Task<ActionResult<UserDto>>Register(RegisterDto registerDto)
+        public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
-            if(await UserExists(registerDto.Username))
+            if (await UserExists(registerDto.Username))
             {
                 return BadRequest("Username is taken");
             }
@@ -49,12 +48,12 @@ namespace DatingApp.Controllers
             };
         }
         [HttpPost("login")]
-        public async Task<ActionResult<UserDto>>Login(LoginDto loginDto)
+        public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
             var user = await _dataContext.Users.SingleOrDefaultAsync(x =>
             x.UserName == loginDto.Username);
-            
-            if(user == null)
+
+            if (user == null)
             {
                 return Unauthorized("Invalid user");
             }
@@ -63,7 +62,7 @@ namespace DatingApp.Controllers
 
             var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDto.Password));
 
-            for(var i = 0; i < computedHash.Length; i++)
+            for (var i = 0; i < computedHash.Length; i++)
             {
                 if (computedHash[i] != user.PasswordHash[i])
                 {
