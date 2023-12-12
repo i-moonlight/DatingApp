@@ -1,4 +1,5 @@
-﻿using DatingApp.Entities;
+﻿using DatingApp.DTOs;
+using DatingApp.Entities;
 
 namespace DatingApp.Services.Repository;
 
@@ -9,4 +10,6 @@ public interface IUserRepository
     Task<IEnumerable<AppUser>> GetUsersAsync();
     Task<AppUser> GetByIdAsync(int id);
     Task<AppUser> GetUserByUsernameAsync(string username);
+    Task<IEnumerable<MemberDto>> GetMemberAsync();
+    Task<MemberDto> GetMemberAsync(string username);
 }

@@ -25,19 +25,18 @@ namespace DatingApp.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
         {
-            var users = (await _userRepository.GetUsersAsync());
+            var users = (await _userRepository.GetMemberAsync());
 
-            var userToReturn = _mapper.Map<IEnumerable<MemberDto>>(users);
+           
 
-            return Ok(userToReturn);
+            return Ok(users);
         }
 
         [HttpGet("{username}")]
         public async Task<ActionResult<MemberDto>> GetUser(string username)
         {
-            var users = await _userRepository.GetUserByUsernameAsync(username);
+            return await _userRepository.GetMemberAsync(username);
 
-            return _mapper.Map<MemberDto>(users);
         }
     }
 }
