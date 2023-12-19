@@ -1,0 +1,100 @@
+<div class="row" *ngIf="member">
+    <div class="col-4">
+        <h1>Your profile</h1>
+    </div>
+    <div class="col-8">
+        <!-- *ngIf="editForm?.dirty" -->
+        <div class="alert alert-info" *ngIf="editForm?.dirty">
+            <p><strong>Information:</strong>You have made changes. Any unsaved changes will be lost</p>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <img src="{{member.photoUrl || './assets/user.png'}}" alt="{{member.knownAs}}"
+                class="card-img-top img-thumbnail">
+            <div class="card-body">
+                <div>
+                    <strong>Location:</strong>
+                    <p>{{member.city}}, {{member.country}}</p>
+                </div>
+                <div>
+                    <strong>Age:</strong>
+                    <p>{{member.age}}</p>
+                </div>
+                <div>
+                    <strong>Last active:</strong>
+                    <p>{{member.lastActive}}</p>
+                </div>
+                <div>
+                    <strong>Location:</strong>
+                    <p>{{member.city}}, {{member.country}}</p>
+                </div>
+                <div>
+                    <strong>Member since:</strong>
+                    <p>{{member.created}}</p>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button type="submit" form="editForm" class="btn btn-success col-12" [disabled]="!editForm?.dirty">Save changes</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-8">
+        <ul ngbNav #nav="ngbNav" class="nav-tabs">
+            <li ngbNavItem [ngbNavItem]="1" >
+                <button  ngbNavLink>About {{member.knownAs}}</button>
+                <ng-template ngbNavContent >
+                    <form  #editForm="ngForm" (ngSubmit)="updateMember()" id="editForm">
+                        <h4 class="mt-2">Description</h4>
+                        <textarea class="form-control" 
+                            [(ngModel)]="member.introduction" 
+                            name="introduction"
+                            rows="6">
+                        </textarea>
+                        <h4 class="mt-2">Looking for</h4>
+                        <textarea class="form-control" 
+                            [(ngModel)]="member.lookingFor" 
+                            name="lookingFor"
+                            rows="6">
+                        </textarea>
+                        <h4 class="mt-2">Interests</h4>
+                        <textarea class="form-control" 
+                            [(ngModel)]="member.interests" 
+                            name="interests"
+                            rows="6">
+                        </textarea>
+                        <h4 class="mt-2">Location Details:</h4>
+                        <div class="d-flex flex-row align-items-center">
+                            <label for="city">City:</label>
+                            <input type="text" [(ngModel)]="member.city" name="city" class="form-control" mx-2>
+                            <label for="country">Country:</label>
+                            <input type="text" [(ngModel)]="member.country" name="country" class="form-control" mx-2>
+                        </div>
+                    </form>
+                </ng-template>
+            </li>
+            <li ngbNavItem [ngbNavItem]="2">
+                <button ngbNavLink>Edit Photos</button>
+                <ng-template ngbNavContent *ngIf="nav.activeId == 2">
+                    <!-- <gallery [items]="images" class="gallery"></gallery> -->
+                    <p>Photo edit wiil go here</p>
+                </ng-template>
+            </li>
+            <li [ngbNavItem]="3">
+                <button ngbNavLink>I can't be selected on click</button>
+                <ng-template ngbNavContent>
+                    <p>
+                        Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id diam. Nulla facilisi.
+                        Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis, luctus eget tincidunt eu, congue et odio.
+                        Duis pharetra et nisl at faucibus. Quisque luctus pulvinar arcu, et molestie lectus ultrices et. Sed diam urna,
+                        egestas ut ipsum vel, volutpat volutpat neque. Praesent fringilla tortor arcu. Vivamus faucibus nisl enim, nec
+                        tristique ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci varius natoque penatibus et
+                        magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac lorem aliquet ultricies in eget
+                        neque. Phasellus nec tortor vel tellus pulvinar feugiat.
+                    </p>
+                </ng-template>
+            </li>
+        </ul>
+        <div [ngbNavOutlet]="nav"></div>
+    </div>
+</div>
