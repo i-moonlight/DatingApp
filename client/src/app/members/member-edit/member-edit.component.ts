@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Member } from '../../model/member';
 import { User } from '../../model/User';
@@ -17,8 +17,9 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './member-edit.component.html',
   styleUrl: './member-edit.component.css'
 })
-export class MemberEditComponent implements OnInit{
+export class MemberEditComponent implements OnInit, OnDestroy{
   @ViewChild('editForm') editForm: NgForm|undefined
+
   member: Member | undefined;
   user: User | null = null;
   images: GalleryItem[] = [];
@@ -30,6 +31,10 @@ export class MemberEditComponent implements OnInit{
                   next: user => this.user = user
                 });
               }
+  ngOnDestroy(): void {
+    console.log("teste");
+    
+  }
   ngOnInit(): void {
     this.loadMember();
   }
