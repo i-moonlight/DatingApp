@@ -7,6 +7,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
+import { loadingInterceptor } from './_interceptors/loading.interceptor';
 
 const noopInterceptorProvider: Provider =
 { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true };
@@ -19,6 +20,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     importProvidersFrom(HttpClientModule),
     noopInterceptorProvider,
-    [provideHttpClient(withInterceptors([JwtInterceptor]))]
+    [provideHttpClient(withInterceptors([JwtInterceptor]))],
+    [provideHttpClient(withInterceptors([loadingInterceptor]))],
   ]
 };
