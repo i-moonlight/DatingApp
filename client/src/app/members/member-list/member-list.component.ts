@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Member } from '../../model/member';
 import { MembersService } from '../../services/members.service';
 import { MemberCardsComponent } from '../member-card/member-card.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-member-list',
@@ -12,16 +13,10 @@ import { MemberCardsComponent } from '../member-card/member-card.component';
   styleUrl: './member-list.component.css'
 })
 export class MemberListComponent implements OnInit {
-members: Member[] = [];
+  members$: Observable<Member[]> | undefined;
 
   constructor(private memberService: MembersService){}
   ngOnInit(): void {
-    this.loadMembers();
-  }
-
-  loadMembers(){
-    this.memberService.getMembers().subscribe({
-      next: members => this.members = members
-    })
+    this.members$ = this.memberService.getMembers();
   }
 }
