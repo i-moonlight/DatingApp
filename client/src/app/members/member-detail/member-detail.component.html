@@ -1,1 +1,70 @@
-<p>member-detail works!</p>
+<div class="row" *ngIf="member">
+    <div class="col-4">
+        <div class="card">
+
+            <img src="{{member.photoUrl || './assets/user.png'}}" alt="{{member.knownAs}}"
+                class="card-img-top img-thumbnail">
+            <div class="card-body">
+                <div>
+                    <strong>Location:</strong>
+                    <p>{{member.city}}, {{member.country}}</p>
+                </div>
+                <div>
+                    <strong>Age:</strong>
+                    <p>{{member.age}}</p>
+                </div>
+                <div>
+                    <strong>Last active:</strong>
+                    <p>{{member.lastActive}}</p>
+                </div>
+                <div>
+                    <strong>Location:</strong>
+                    <p>{{member.city}}, {{member.country}}</p>
+                </div>
+                <div>
+                    <strong>Member since:</strong>
+                    <p>{{member.created}}</p>
+                </div>
+            </div>
+                <div class="card-footer">
+                    <div class="btn-group d-flex">
+                        <button class="btn btn-primary">Like</button>
+                        <button class="btn btn-success">Messages</button>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <div class="col-8">
+    <ul ngbNav #nav="ngbNav" class="nav-tabs">
+        <li ngbNavItem >
+          <button ngbNavLink>About {{member.knownAs}}</button>
+          <ng-template ngbNavContent>
+            <h4>Description</h4>
+            <p>{{member.introduction}}</p>
+            <h4>Looking for</h4>
+            <p>{{member.lookingFor}}</p>
+          </ng-template>
+        </li>
+        <li ngbNavItem>
+          <button ngbNavLink>Interests</button>
+          <ng-template ngbNavContent>
+            <h4>Interests:</h4>
+            <p>{{member.interests}}</p>
+          </ng-template>
+        </li>
+        <li ngbNavItem [ngbNavItem]="3">
+            <button ngbNavLink>Photos</button>
+            <ng-template ngbNavContent *ngIf="nav.activeId == 3">
+              <gallery  [items]="images" class="gallery"></gallery>
+            </ng-template>
+          </li>
+          <li ngbNavItem>
+            <button ngbNavLink>Messages</button>
+            <ng-template ngbNavContent>
+              <p>Messages wiil go here</p>
+            </ng-template>
+          </li>
+      </ul>
+      <div [ngbNavOutlet]="nav"></div>
+    </div>
+</div>
